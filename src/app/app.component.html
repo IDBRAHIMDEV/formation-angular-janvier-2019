@@ -7,7 +7,22 @@
 
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let course of courses"> 
-    <button class="btn btn-sm" [ngClass]="{
+    
+    <i class="fa" [ngClass]="{
+      'fa-star': course.favorite,
+      'fa-star-o': !course.favorite
+    }" (click)="onFavorite(course)"></i>
+  
+      <app-votes 
+       [like]="course.vote.like" 
+       [dislike]="course.vote.disLike"
+       (changeVote)="UpdateVote(course, $event)">
+      </app-votes>
+
+     like: {{ course.vote.like }}
+     dislike: {{ course.vote.disLike }}
+
+    <button class="btn ml-2 btn-sm" [ngClass]="{
       'btn-success': course.active,
       'btn-danger': !course.active
     }" (click)="togglePower(course)">

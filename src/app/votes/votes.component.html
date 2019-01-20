@@ -1,0 +1,13 @@
+<button [ngClass]="{
+  'btn-light': !like,
+  'btn-primary': like
+}" class="btn btn-sm btn-light" (click)="addLike()">
+  <i class="fa fa-thumbs-up"></i> {{ like }}
+</button>
+
+<button [ngClass]="{
+  'btn-light': !disLike,
+  'btn-danger': disLike
+}" class="btn btn-sm btn-light" (click)="addDisLike()">
+  <i class="fa fa-thumbs-down"></i> {{ disLike }}
+</button>
