@@ -1,0 +1,63 @@
+<h1>{{ title }}</h1>
+<input class="form-control" [(ngModel)]="currentCourse.title" type="text" placeholder="New Course" >
+
+<button *ngIf="!onUpdate" class="btn btn-primary btn-block" (click)="addCourse()"> Add </button>
+
+<button *ngIf="onUpdate" class="btn btn-warning btn-block" (click)="updateCourse()"> Update </button>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let course of courses"> 
+    <button class="btn btn-sm" [ngClass]="{
+      'btn-success': course.active,
+      'btn-danger': !course.active
+    }" (click)="togglePower(course)">
+       <i class="fa fa-power-off"></i>
+    </button>   {{ course.title }}
+
+<!-- .text-right>(button.btn.btn-warning.btn-sm.mr-1>i.fa.fa-pencil)+(button.btn.btn-danger.btn-sm>i.fa.fa-trash)     -->
+
+    <div class="text-right">
+      <button class="btn btn-warning btn-sm mr-1" (click)="editCourse(course)">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="deleteCourse(course)">
+          <i class="fa fa-trash"></i>
+        </button>
+    </div>
+    
+  </li>
+</ul>
+
+<div *ngIf="courses.length; then hasCourses else noCourses"></div>
+
+<ng-template #hasCourses>
+    <div class="alert alert-info">il existe {{ courses.length }} cours.</div>
+</ng-template>
+
+<ng-template #noCourses>
+    <div  class="alert alert-warning">Pas de cours</div>
+</ng-template>
+
+<!-- 
+  <app-navbar></app-navbar>
+   <div class="container">
+       <div class="row">
+         <div class="col-md-4">
+           <app-sidebar></app-sidebar>
+         </div>
+         <div class="col-md-8">
+           <app-content1></app-content1>
+
+           <hr>
+
+           <app-content2></app-content2>
+         </div>
+       </div>
+     
+       <div class="row">
+         <div class="col-md-12">
+           <app-footer></app-footer>
+         </div>
+       </div>
+   </div>
+ -->
