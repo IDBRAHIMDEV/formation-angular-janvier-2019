@@ -16,7 +16,8 @@
       <app-votes 
        [like]="course.vote.like" 
        [dislike]="course.vote.disLike"
-       (changeVote)="UpdateVote(course, $event)">
+       (changeVoteLike)="UpdateLike(course, $event)"
+       (changeVoteDislike)="UpdateDislike(course, $event)">
       </app-votes>
 
      like: {{ course.vote.like }}
@@ -27,7 +28,10 @@
       'btn-danger': !course.active
     }" (click)="togglePower(course)">
        <i class="fa fa-power-off"></i>
-    </button>   {{ course.title }}
+    </button>   {{ course.title }} , 
+    <p>{{ course.description | extrait:30 }}</p>
+    price: {{ course.price | currency:'EUR ':'code':'3.1-1' }}, 
+    Date: {{ course.date | date: 'dd/MM/yyyy' }}
 
 <!-- .text-right>(button.btn.btn-warning.btn-sm.mr-1>i.fa.fa-pencil)+(button.btn.btn-danger.btn-sm>i.fa.fa-trash)     -->
 
