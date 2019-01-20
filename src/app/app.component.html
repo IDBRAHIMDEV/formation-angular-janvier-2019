@@ -1,4 +1,6 @@
-<h1>{{ title }}</h1>
+<app-posts></app-posts>
+
+<!-- <h1>{{ title }}</h1>
 <input class="form-control" [(ngModel)]="currentCourse.title" type="text" placeholder="New Course" >
 
 <button *ngIf="!onUpdate" class="btn btn-primary btn-block" (click)="addCourse()"> Add </button>
@@ -28,14 +30,14 @@
       'btn-danger': !course.active
     }" (click)="togglePower(course)">
        <i class="fa fa-power-off"></i>
-    </button>   {{ course.title }} , 
+    </button>   {{ course.title | titlecase | extrait:3 }} , 
     <p>{{ course.description | extrait:30 }}</p>
     price: {{ course.price | currency:'EUR ':'code':'3.1-1' }}, 
     Date: {{ course.date | date: 'dd/MM/yyyy' }}
 
-<!-- .text-right>(button.btn.btn-warning.btn-sm.mr-1>i.fa.fa-pencil)+(button.btn.btn-danger.btn-sm>i.fa.fa-trash)     -->
+ .text-right>(button.btn.btn-warning.btn-sm.mr-1>i.fa.fa-pencil)+(button.btn.btn-danger.btn-sm>i.fa.fa-trash)     -->
 
-    <div class="text-right">
+    <!-- <div class="text-right">
       <button class="btn btn-warning btn-sm mr-1" (click)="editCourse(course)">
           <i class="fa fa-pencil"></i>
         </button>
@@ -45,7 +47,7 @@
     </div>
     
   </li>
-</ul>
+</ul> 
 
 <div *ngIf="courses.length; then hasCourses else noCourses"></div>
 
@@ -57,7 +59,7 @@
     <div  class="alert alert-warning">Pas de cours</div>
 </ng-template>
 
-<!-- 
+ 
   <app-navbar></app-navbar>
    <div class="container">
        <div class="row">
@@ -79,4 +81,4 @@
          </div>
        </div>
    </div>
- -->
+ --> -->

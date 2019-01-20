@@ -9,8 +9,11 @@ import { Content1Component } from './content1/content1.component';
 import { Content2Component } from './content2/content2.component';
 
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { VotesComponent } from './votes/votes.component';
 import { ExtraitPipe } from './extrait.pipe';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +24,13 @@ import { ExtraitPipe } from './extrait.pipe';
     Content1Component,
     Content2Component,
     VotesComponent,
-    ExtraitPipe
+    ExtraitPipe,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
