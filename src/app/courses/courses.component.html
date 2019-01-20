@@ -1,0 +1,81 @@
+<h1>{{ title }}</h1>
+<input class="form-control" [(ngModel)]="currentCourse.title" type="text" placeholder="New Course" >
+
+<button *ngIf="!onUpdate" class="btn btn-primary btn-block" (click)="addCourse()"> Add </button>
+
+<button *ngIf="onUpdate" class="btn btn-warning btn-block" (click)="updateCourse()"> Update </button>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let course of courses"> 
+    
+    <i class="fa" [ngClass]="{
+      'fa-star': course.favorite,
+      'fa-star-o': !course.favorite
+    }" (click)="onFavorite(course)"></i>
+  
+      <app-votes 
+       [like]="course.vote.like" 
+       [dislike]="course.vote.disLike"
+       (changeVoteLike)="UpdateLike(course, $event)"
+       (changeVoteDislike)="UpdateDislike(course, $event)">
+      </app-votes>
+
+     like: {{ course.vote.like }}
+     dislike: {{ course.vote.disLike }}
+
+    <button class="btn ml-2 btn-sm" [ngClass]="{
+      'btn-success': course.active,
+      'btn-danger': !course.active
+    }" (click)="togglePower(course)">
+       <i class="fa fa-power-off"></i>
+    </button>   {{ course.title | titlecase | extrait:3 }} , 
+    <p>{{ course.description | extrait:30 }}</p>
+    price: {{ course.price | currency:'EUR ':'code':'3.1-1' }}, 
+    Date: {{ course.date | date: 'dd/MM/yyyy' }}
+
+ .text-right>(button.btn.btn-warning.btn-sm.mr-1>i.fa.fa-pencil)+(button.btn.btn-danger.btn-sm>i.fa.fa-trash)     -->
+
+   <div class="text-right">
+      <button class="btn btn-warning btn-sm mr-1" (click)="editCourse(course)">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="deleteCourse(course)">
+          <i class="fa fa-trash"></i>
+        </button>
+    </div>
+    
+  </li>
+</ul> 
+
+<div *ngIf="courses.length; then hasCourses else noCourses"></div>
+
+<ng-template #hasCourses>
+    <div class="alert alert-info">il existe {{ courses.length }} cours.</div>
+</ng-template>
+
+<ng-template #noCourses>
+    <div  class="alert alert-warning">Pas de cours</div>
+</ng-template>
+
+ 
+  <app-navbar></app-navbar>
+   <div class="container">
+       <div class="row">
+         <div class="col-md-4">
+           <app-sidebar></app-sidebar>
+         </div>
+         <div class="col-md-8">
+           <app-content1></app-content1>
+
+           <hr>
+
+           <app-content2></app-content2>
+         </div>
+       </div>
+     
+       <div class="row">
+         <div class="col-md-12">
+           <app-footer></app-footer>
+         </div>
+       </div>
+   </div>
