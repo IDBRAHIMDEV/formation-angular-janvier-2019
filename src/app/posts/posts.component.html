@@ -1,25 +1,53 @@
    
    <div class="row">
      <div class="col-md-6 mx-auto">
-       
+       <form #f="ngForm">
       <div class="form-group">
         <label for="Title">Title</label>
-        <input [(ngModel)]="newPost.title" id="Title" class="form-control">
+        <input [ngClass]="{
+          'is-invalid': title.touched && title.invalid,
+          'is-valid': title.touched && title.valid
+      }" (change)="log(title)" #title="ngModel" required minlength="3" maxlength="10" pattern="[a-zA-Z0-9]*" [(ngModel)]="newPost.title" id="Title" name="title" class="form-control">
+        <div *ngIf="title.invalid && title.dirty">
+            <div class="" *ngIf="title.errors.required">
+              This field is Required !!
+            </div>
+
+            <div class="" *ngIf="title.errors.minlength">
+              This field has great than 3 !!
+            </div>
+
+            <div class="" *ngIf="title.errors.pattern">
+              This field not respect the pattern !!
+            </div>
+        </div>
+       
       </div>
+
+      <div class="form-group">
+        <select [(ngModel)]="newPost.myContact" name="myContact" id="" class="form-control">
+          <option [ngValue]="type" *ngFor="let type of contactType">{{ type.label }}</option>
+        </select> 
+      </div>
+
+      <input [(ngModel)]="newPost.subscribe" type="checkbox" name="subscribe"> Subscribe
 
       <div class="form-group">
         <label for="Body">Body</label>
         <textarea [(ngModel)]="newPost.body" class="form-control" name="Body" id="Body" cols="30" rows="2"></textarea>
       </div>
       
-      <button *ngIf="!edit" class="btn btn-primary btn-block" (click)="addPost()"> 
+      <button  *ngIf="!edit" class="btn btn-primary btn-block" (click)="addPost(f)"> 
           <i class="fa fa-plus"></i> Add new Post
       </button>
 
       <button *ngIf="edit" class="btn btn-warning btn-block" (click)="updatePost()"> 
           <i class="fa fa-plus"></i>  Update Post
       </button>
+      
+      {{ newPost | json }}
 
+    </form>
      </div>
    </div>
 

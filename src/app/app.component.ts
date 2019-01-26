@@ -12,6 +12,7 @@ export class AppComponent {
   currentCourse = {
     id: 0,
     title: "",
+    description: "",
     active: false,
     favorite: false,
     date: new Date(),
@@ -30,6 +31,7 @@ export class AppComponent {
     this.currentCourse = {
       id: 0,
       title: "",
+      description: "",
       active: false,
       favorite: false,
       date: new Date(),
